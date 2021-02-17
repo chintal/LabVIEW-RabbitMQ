@@ -10,6 +10,11 @@ def SendOnQueue(queue_name, message):
         exchange='', routing_key=queue_name, body=message)
 
 
+def SendOnExchange(exchange_name, routing_key, message):
+    common.rabbitmq_connection.basic_publish(
+        exchange=exchange_name, routing_key=routing_key, body=message)
+
+
 if __name__ == '__main__':
     CreateConnection(port=5673, username='tmri4', password='tmri4', virtual_host='tmri4', host='localhost')
     OpenQueue('test_python')

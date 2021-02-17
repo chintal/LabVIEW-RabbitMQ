@@ -23,6 +23,12 @@ def CreateConnection(host, port, virtual_host, username, password):
     rabbitmq_connection = channel
 
 
-def OpenQueue(queue_name):
+def OpenQueue(queue_name, exclusive):
     global rabbitmq_connection
-    rabbitmq_connection.queue_declare(queue=queue_name)
+    result = rabbitmq_connection.queue_declare(queue=queue_name, exclusive=exclusive)
+    return result.method.queue
+
+
+def OpenExchange(exchange_name):
+    global rabbitmq_connection
+    rabbitmq_connection.exchange_declare(exchange=exchange_name, exchange_type='topic')

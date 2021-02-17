@@ -28,6 +28,12 @@ def ReadFromQueue(queue_name, batch_size):
     return messages
 
 
+def BindQueueToExchange(exchange_name, queue_name, routing_key):
+    common.rabbitmq_connection.queue_bind(exchange=exchange_name,
+                                          queue=queue_name,
+                                          routing_key=routing_key)
+
+
 if __name__ == '__main__':
     CreateConnection(port=5673, username='tmri4', password='tmri4', virtual_host='tmri4', host='localhost')
     OpenQueue('test_python')
