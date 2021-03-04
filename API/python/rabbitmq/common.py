@@ -31,4 +31,4 @@ def OpenQueue(queue_name, exclusive):
 
 def OpenExchange(exchange_name):
     global rabbitmq_connection
-    rabbitmq_connection.exchange_declare(exchange=exchange_name, exchange_type='topic')
+    rabbitmq_connection.exchange_declare(exchange=exchange_name, exchange_type='topic', durable=True)
