@@ -35,7 +35,7 @@ def BindQueueToExchange(exchange_name, queue_name, routing_key):
 
 
 if __name__ == '__main__':
-    CreateConnection(port=5673, username='tmri4', password='tmri4', virtual_host='tmri4', host='localhost')
+    CreateConnection(port=5672, username='tmri4', password='tmri4', virtual_host='tmri4', host='localhost')
     OpenQueue('test_python')
     data = ReadOneFromQueue('test_python')
     print(data)

@@ -18,7 +18,7 @@ class BoundChannel(object):
                 virtual_host=virtual_host,
                 host=host,
                 credentials=pika.PlainCredentials(username=username, password=password),
-                ssl_options=pika.SSLOptions(context=ssl.SSLContext(), server_hostname=platform.node())
+                #ssl_options=pika.SSLOptions(context=ssl.SSLContext(), server_hostname=platform.node())
             ),
         )
         self._channel = self._connection.channel()
