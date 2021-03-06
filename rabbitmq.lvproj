@@ -13,7 +13,6 @@
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
 		<Item Name="rabbitmq.lvlib" Type="Library" URL="../rabbitmq.lvlib"/>
 		<Item Name="RabbitMQPythonScaffold.vi" Type="VI" URL="../RabbitMQPythonScaffold.vi"/>
-		<Item Name="RabbitMQExample.vi" Type="VI" URL="../RabbitMQExample.vi"/>
 		<Item Name="Dependencies" Type="Dependencies"/>
 		<Item Name="Build Specifications" Type="Build">
 			<Item Name="zipfile" Type="Zip File">

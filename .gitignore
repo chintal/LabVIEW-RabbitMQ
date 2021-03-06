@@ -266,3 +266,27 @@ dmypy.json
 # End of https://www.toptal.com/developers/gitignore/api/python,pycharm,labview
 
 *.idea
+
+# Created by https://www.toptal.com/developers/gitignore/api/labview
+# Edit at https://www.toptal.com/developers/gitignore?templates=labview
+
+### LabVIEW ###
+# Libraries
+*.lvlibp
+*.llb
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+
+# Metadata
+*.aliases
+*.lvlps
+.cache/
+
+# End of https://www.toptal.com/developers/gitignore/api/labview

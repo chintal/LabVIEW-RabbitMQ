@@ -75,7 +75,7 @@ class QueueReceiveBuffer(object):
         self._messages.put(body.decode())
 
     def get(self):
-        return self._messages.get(block=True)
+        return self._messages.get(block=True, timeout=2)
 
     def qsize(self):
         return self._messages.qsize()
@@ -99,4 +99,4 @@ if __name__ == '__main__':
     GetExchangeBoundQueue(port=5673, username='tmri4', password='tmri4', virtual_host='tmri4', host='rabbit.chintal.in',
                           exchange_name='i4.topic', routing_key='#', queue_name='')
     while True:
-        print(_buffer.get())
+        print(ReadOneFromBoundQueue())

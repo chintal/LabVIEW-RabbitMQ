@@ -39,8 +39,10 @@
 	<Item Name="config.ctl" Type="VI" URL="../API/config.ctl"/>
 	<Item Name="connect.vi" Type="VI" URL="../API/connect.vi"/>
 	<Item Name="disconnect.vi" Type="VI" URL="../API/disconnect.vi"/>
+	<Item Name="getExchangeBoundQueue.vi" Type="VI" URL="../API/getExchangeBoundQueue.vi"/>
 	<Item Name="openExchange.vi" Type="VI" URL="../API/openExchange.vi"/>
 	<Item Name="openQueue.vi" Type="VI" URL="../API/openQueue.vi"/>
+	<Item Name="readOneFromBoundQueue.vi" Type="VI" URL="../API/readOneFromBoundQueue.vi"/>
 	<Item Name="receive.vi" Type="VI" URL="../API/receive.vi"/>
 	<Item Name="receive_one.vi" Type="VI" URL="../API/receive_one.vi"/>
 	<Item Name="sendOnExchange.vi" Type="VI" URL="../API/sendOnExchange.vi"/>
