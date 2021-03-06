@@ -35,11 +35,6 @@
 	<Property Name="SaveStatePeriod" Type="UInt">0</Property>
 	<Property Name="Serialized ACL" Type="Bin">'1#!!!!!!!)!"1!&amp;!!!A1%!!!@````]!!".V&lt;H.J:WZF:#"C?82F)'&amp;S=G&amp;Z!!%!!1!!!!A)!!!!#!!!!!!!!!!</Property>
 	<Property Name="Use Data Logging Database" Type="Bool">true</Property>
-	<Item Name="python" Type="Folder">
-		<Item Name="rabbitmq" Type="Folder">
-			<Item Name="sender.py" Type="Document" URL="../API/python/rabbitmq/sender.py"/>
-		</Item>
-	</Item>
 	<Item Name="bindQueueToExchange.vi" Type="VI" URL="../API/bindQueueToExchange.vi"/>
 	<Item Name="config.ctl" Type="VI" URL="../API/config.ctl"/>
 	<Item Name="connect.vi" Type="VI" URL="../API/connect.vi"/>
