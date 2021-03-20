@@ -1,5 +1,6 @@
 
 import ssl
+import time
 import pika
 import common
 import queue
@@ -65,9 +66,15 @@ class QueueReceiveBuffer(object):
         self._thread.start()
 
     def _execute(self):
-        with BoundChannel(self._host, self._port, self._virtual_host, self._username, self._password,
-                          self._exchange_name, self._routing_key, self._queue_name) as channel:
-            channel.consume(callback=self._handle_message)
+        while True:
+            try:
+                with BoundChannel(self._host, self._port, self._virtual_host, self._username, self._password,
+                                  self._exchange_name, self._routing_key, self._queue_name) as channel:
+                    channel.consume(callback=self._handle_message)
+            except Exception:
+                time.sleep(1)
+                continue
+
 
     def _handle_message(self, ch, method, properties, body):
         if self.qsize() >= self._buffer_size:
@@ -86,7 +93,11 @@ _buffer: QueueReceiveBuffer = None
 
 def ReadOneFromBoundQueue():
     global _buffer
-    return _buffer.get()
+    try:
+        return _buffer.get()
+    except queue.Empty:
+        return ""
+
 
 
 def GetExchangeBoundQueue(host, port, virtual_host, username, password, exchange_name, routing_key, queue_name):
@@ -96,7 +107,7 @@ def GetExchangeBoundQueue(host, port, virtual_host, username, password, exchange
 
 
 if __name__ == '__main__':
-    GetExchangeBoundQueue(port=5673, username='tmri4', password='tmri4', virtual_host='tmri4', host='rabbit.chintal.in',
+    GetExchangeBoundQueue(port=5672, username='tmri4', password='tmri4', virtual_host='tmri4', host='tmir.tendril.link',
                           exchange_name='i4.topic', routing_key='#', queue_name='')
     while True:
         print(ReadOneFromBoundQueue())
