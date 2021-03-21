@@ -82,7 +82,7 @@ class QueueReceiveBuffer(object):
         self._messages.put(body.decode())
 
     def get(self):
-        return self._messages.get(block=True, timeout=2)
+        return self._messages.get(block=False)
 
     def qsize(self):
         return self._messages.qsize()
