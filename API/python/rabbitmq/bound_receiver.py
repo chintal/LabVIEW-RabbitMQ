@@ -2,13 +2,10 @@
 import ssl
 import time
 import pika
-import common
 import queue
+import socket
 import platform
 import threading
-
-CreateConnection = common.CreateConnection
-OpenQueue = common.OpenQueue
 
 
 class BoundChannel(object):
@@ -23,7 +20,8 @@ class BoundChannel(object):
             ),
         )
         self._channel = self._connection.channel()
-        result = self._channel.queue_declare(queue=queue_name, exclusive=True)
+        self._channel.basic_qos(prefetch_count=1)
+        result = self._channel.queue_declare(queue=queue_name, durable=False, auto_delete=True)
         self._queue_name = result.method.queue
         self._channel.queue_bind(exchange=exchange_name,
                                  queue=queue_name,
@@ -71,10 +69,9 @@ class QueueReceiveBuffer(object):
                 with BoundChannel(self._host, self._port, self._virtual_host, self._username, self._password,
                                   self._exchange_name, self._routing_key, self._queue_name) as channel:
                     channel.consume(callback=self._handle_message)
-            except Exception:
+            except (pika.exceptions.ConnectionClosedByBroker, pika.exceptions.AMQPConnectionError, socket.gaierror) as err:
                 time.sleep(1)
                 continue
-
 
     def _handle_message(self, ch, method, properties, body):
         if self.qsize() >= self._buffer_size:
